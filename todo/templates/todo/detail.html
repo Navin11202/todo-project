@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Todo App</title>
+
+    <style>
+      body {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Detail Task</h1>
+
+      <div>
+        <a href="{% url 'todo:index' %}" class="btn btn-success">Kembali ke Daftar</a>
+      </div>
+
+      <br>
+
+      <div>
+        <h2>{{ task.title }}</h2>
+        
+        <h4><span class="badge badge-warning">{{ task.status }}</span></h3>
+
+        <p>
+            {{ task.description }}
+        </p>
+      </div>
+  </div>
+ 
+  </body>
+</html>

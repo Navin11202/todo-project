@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <title>Todo App</title>
+
+    <style>
+      body {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Daftar Task</h1>
+
+      <!-- button besar  -->
+      <!-- blok notifikasi -->
+      <div>
+        {% if messages %} {% for message in messages %}
+
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+          {{ message | safe }}
+        </div>
+
+        {% endfor %} {% endif %}
+      </div>
+
+      <!-- tombol untuk ke halaman tambah task -->
+      <div>
+        <a href="{% url 'todo:create'  %}" class="btn btn-success">Tambah Baru</a>
+      </div>
+      <!-- akhir buyyon besar -->
+      <br />
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th width="5%">ID</th>
+            <th width="20%">Judul</th>
+            <th width="45%">Deskripsi</th>
+            <th width="5%">Status</th>
+            <th width="20%">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- daftar task-->
+          {% if tasks %} {% for task in tasks %}
+          <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.status }}</td>
+            <td>
+              <a href="{% url 'todo:detail' task.id %}" class="btn btn-warning btn-sm">detail</a>
+              <a href="{% url 'todo:update' task.id %}" class="btn btn-primary btn-sm">ubah</a>
+              <a href="#" class="btn btn-danger btn-sm">hapus</a>
+            </td>
+          </tr>
+          {% endfor %} {% else %}
+          <tr>
+            <td colspan="5">Data tidak ditemukan.</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
