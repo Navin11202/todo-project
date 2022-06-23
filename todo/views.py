@@ -76,7 +76,7 @@ def create_view(request):
         form = TaskForm()
         # merender template form dengan memparsing data form
         return render(request, 'todo/form.html', {'form': form})
-        
+
 # Membuat View untuk halaman form ubah task
 def update_view(request, task_id):
     try:
@@ -103,3 +103,18 @@ def update_view(request, task_id):
         form = TaskForm(instance=task)
     # merender template form dengan memparsing data form
     return render(request, 'todo/form.html', {'form': form})
+    
+# Membuat View untuk menghapus data task
+def delete_view(request, task_id):
+    try:
+        # mengambil data task yang akan dihapus berdasarkan task id
+        task = Task.objects.get(pk=task_id)
+        # menghapus data dari table tasks
+        task.delete()
+        # mengeset pesan sukses dan redirect ke halaman daftar task
+        messages.success(request, 'Sukses Menghapus Task.')
+        return redirect('todo:index')
+    except Task.DoesNotExist:
+        # Jika data task tidak ditemukan,
+        # maka akan di redirect ke halaman 404 (Page not found).
+        raise Http404("Task tidak ditemukan.")

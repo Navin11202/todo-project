@@ -64,7 +64,7 @@
             <td>
               <a href="{% url 'todo:detail' task.id %}" class="btn btn-warning btn-sm">detail</a>
               <a href="{% url 'todo:update' task.id %}" class="btn btn-primary btn-sm">ubah</a>
-              <a href="#" class="btn btn-danger btn-sm">hapus</a>
+              <a href="{% url 'todo:delete' task.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah yakin akan menghapus task ini?')">hapus</a>
             </td>
           </tr>
           {% endfor %} {% else %}
